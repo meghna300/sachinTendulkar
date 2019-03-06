@@ -4,7 +4,7 @@ import { Detail } from '../detail';
 
 @Injectable()
 export class GetDetailsService {
- url = '../assets/csvjson.json';
+ url = '../assets/data/csvjson.json';
   constructor( private http: HttpClient) { }
   public getDetails() {
     return this.http.get<Detail[]>(this.url);

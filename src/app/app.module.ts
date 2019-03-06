@@ -5,6 +5,7 @@ import { GetDetailsService } from './service/get-details.service';
 import { AppComponent } from './app.component';
 import { SachinComponent } from './sachin/sachin.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ChartsModule } from 'ng4-charts/ng4-charts';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [GetDetailsService],
   bootstrap: [AppComponent]

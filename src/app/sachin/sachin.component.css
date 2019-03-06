@@ -1,0 +1,27 @@
+body{
+    padding: 0;
+    margin:0;
+}
+.header{
+    background: linear-gradient(rgba(253, 203, 64, 0.705),rgba(247, 152, 36, 0.747)),
+    url(../../assets/images/sachin-tendulkar_ura85y4fzkh318v8494uwhfj7.jpg);;
+    background-position: center;
+    background-size: cover;
+    height: 70vh;
+}
+.heading{
+    position: absolute;
+    top:30%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    color: #fff;
+    font-size: 4em;
+    font-weight:900;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+    transition: all;
+}
+#pieChartDiv {
+    height:400px;
+}
