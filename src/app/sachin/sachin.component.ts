@@ -10,38 +10,29 @@ import { Chart } from 'chart.js';
   styleUrls: ['./sachin.component.css']
 })
 export class SachinComponent implements OnInit {
-  Piechart: any[];
+  public pieChartData = [8, 10];
+  public pieChartLabels = ['won', 'lost'] ;
+  public pieChartType = 'pie';
+  public pieChartOptions: any;
    detail: Detail[];
   lost: number;
   won: number;
   constructor(private getDetailsService: GetDetailsService) { }
 
   ngOnInit() {
+    const canvas = <HTMLCanvasElement>document.getElementById('pieChartDiv');
+    const ctx = canvas.getContext('2d');
+    // this.pieChartData = [8, 10];
+    // this.pieChartLabels = ['won', 'lost'];
+    // this.pieChartType = 'pie';
+    this.pieChartOptions = {
+      responsibe: true
+    };
+    console.log(this.pieChartData);
     this.getDetailsService.getDetails().subscribe(res => {
       this.detail = res;
       console.log(this.detail);
       this.getMatchResult();
-      const canvas = <HTMLCanvasElement> document.getElementById('pieChartDiv');
-      const ctx = canvas.getContext('2d');
-      this.Piechart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          datasets: [{
-            data: [this.won, this.lost]
-          }],
-
-          // These labels appear in the legend and in the tooltips when hovering different arcs
-          labels: [
-            'Won',
-            'Lost'
-          ]
-        },
-        option: {
-          backgroundColor: ['#ffe63b', '#eeeeee']
-        }
-
-      });
-      console.log(this.Piechart);
     },
     error => {
       console.log(error.message);

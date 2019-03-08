@@ -1,4 +1,10 @@
 <div class="header container-fluid">
   <h1 class="heading">Sachin Tendulkar</h1>
 </div>
-<canvas base-chart id="pieChartDiv" width='700' height='700'></canvas>
+<div>
+<canvas baseChart
+[data]="pieChaetData"
+[labels]="pieChartLabels"
+[chartType]="pieChartType"
+id="pieChartDiv" width='700' height='700'></canvas>
+</div>
