@@ -1,10 +1,23 @@
 <div class="header container-fluid">
   <h1 class="heading">Sachin Tendulkar</h1>
 </div>
-<div>
+<h1 class="section_heading"> RECORDS</h1>
+<div class="row no-gutters">
+<div class="chart col-md-4">
+  <h3 class="graph_heading">WIN VS LOST</h3>
 <canvas baseChart
-[data]="pieChaetData"
+[data]="pieChartData"
 [labels]="pieChartLabels"
 [chartType]="pieChartType"
-id="pieChartDiv" width='700' height='700'></canvas>
+id="pieChartDiv" style="width: 200px;height: 200px;"></canvas>
+</div> 
+<div class="chart col-md-3">
+  <h3 class="graph_heading">BATTING SCORE</h3>
+  <canvas baseChart 
+  [data]="barChartData" 
+  [labels]="barChartLabels" 
+  [chartType]="barChartType" 
+  [legend]="true"
+  id="barChartDiv" style="width: 200px;height: 200px;"></canvas>
+</div>
 </div>

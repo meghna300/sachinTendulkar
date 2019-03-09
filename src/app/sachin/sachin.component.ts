@@ -10,29 +10,32 @@ import { Chart } from 'chart.js';
   styleUrls: ['./sachin.component.css']
 })
 export class SachinComponent implements OnInit {
-  public pieChartData = [8, 10];
-  public pieChartLabels = ['won', 'lost'] ;
-  public pieChartType = 'pie';
-  public pieChartOptions: any;
-   detail: Detail[];
-  lost: number;
-  won: number;
+  pieChartData = [8, 10];
+  pieChartLabels = ['won', 'lost'] ;
+  pieChartType = 'pie';
+  pieChartOptions: any;
+  barChartData =  [3, 2, 1];
+  barChartLabels = ['Century', 'Half Century', 'Below 50'];
+  barChartType = 'bar';
+  barChartOptions: any;
+  detail: Detail[];
+  lost = 0;
+  won = 0;
+  century = 0;
+  halfCentury = 0;
+  below50 = 0;
   constructor(private getDetailsService: GetDetailsService) { }
 
   ngOnInit() {
-    const canvas = <HTMLCanvasElement>document.getElementById('pieChartDiv');
-    const ctx = canvas.getContext('2d');
-    // this.pieChartData = [8, 10];
-    // this.pieChartLabels = ['won', 'lost'];
-    // this.pieChartType = 'pie';
-    this.pieChartOptions = {
-      responsibe: true
-    };
-    console.log(this.pieChartData);
+    const pie_canvas = <HTMLCanvasElement>document.getElementById('pieChartDiv');
+    const pie_ctx = pie_canvas.getContext('2d');
+    const bar_canvas = <HTMLCanvasElement>document.getElementById('barChartDiv');
+    const bar_ctx = pie_canvas.getContext('2d');
     this.getDetailsService.getDetails().subscribe(res => {
       this.detail = res;
       console.log(this.detail);
       this.getMatchResult();
+      this.getBattingScore();
     },
     error => {
       console.log(error.message);
@@ -41,8 +44,6 @@ export class SachinComponent implements OnInit {
   }
 
   getMatchResult() {
-    this.won = 0;
-    this.lost = 0;
     for (let i = 0; i < this.detail.length; i++) {
       if (this.detail[i].match_result === 'won') {
         this.won = this.won + 1;
@@ -51,8 +52,33 @@ export class SachinComponent implements OnInit {
       }
 
     }
+    this.pieChartData = [this.won, this.lost];
+    this.pieChartOptions = {
+      responsive: true
+    };
     console.log(this.won);
     console.log(this.lost);
+  }
+
+  getBattingScore() {
+   for (let i = 0; i < this.detail.length; i++) {
+     if (this.detail[i].batting_score > 100 || this.detail[i].batting_score === 100) {
+       this.century += 1;
+     }
+     if (this.detail[i].batting_score < 100 && this.detail[i].batting_score > 50) {
+       this.halfCentury += 1;
+     }
+     if (this.detail[i].batting_score < 50) {
+       this.below50 += 1;
+     }
+   }
+    this.barChartData = [this.century, this.halfCentury, this.below50];
+    this.barChartOptions = {
+      responsive: true
+    };
+   console.log(this.century);
+   console.log(this.halfCentury);
+   console.log(this.below50);
   }
 
 }

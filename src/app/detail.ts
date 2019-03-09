@@ -1,5 +1,5 @@
 export class Detail {
-    batting_score: string;
+    batting_score: number;
     wickets: number;
     runs_conceded: number;
     catches: number;

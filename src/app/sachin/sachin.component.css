@@ -22,6 +22,15 @@ body{
     margin: 0;
     transition: all;
 }
-#pieChartDiv {
-    height:400px;
+.section_heading{
+    text-align: center;
+    margin: 20px 0px;
+
+}
+.chart{
+    margin-top:20px;
+}
+.graph_heading{
+    text-align:center;
+    margin:10px;
 }
