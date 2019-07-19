@@ -13,10 +13,12 @@ export class SachinComponent implements OnInit {
   pieChartData = [8, 10];
   pieChartLabels = ['won', 'lost'] ;
   pieChartType = 'pie';
+  pieChartColor: any;
   pieChartOptions: any;
   barChartData =  [3, 2, 1];
   barChartLabels = ['Century', 'Half Century', 'Below 50'];
   barChartType = 'bar';
+  barChartColor: any;
   barChartOptions: any;
   detail: Detail[];
   lost = 0;
@@ -56,6 +58,11 @@ export class SachinComponent implements OnInit {
     this.pieChartOptions = {
       responsive: true
     };
+    this.pieChartColor = [
+      {
+        backgroundColor: ['rgb(253, 203, 64)', 'rgb(247, 152, 36)']
+      }
+    ];
     console.log(this.won);
     console.log(this.lost);
   }
@@ -76,9 +83,13 @@ export class SachinComponent implements OnInit {
     this.barChartOptions = {
       responsive: true
     };
+    this.barChartColor = [
+      {
+        backgroundColor: ['rgb(253, 203, 64)', 'rgb(247, 152, 36)', 'rgb(247, 152, 100)']
+      }
+    ];
    console.log(this.century);
    console.log(this.halfCentury);
    console.log(this.below50);
   }
-
 }

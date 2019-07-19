@@ -6,7 +6,7 @@ export class Detail {
     stumps: number;
     opposition: string;
     ground: string;
-    date: string;
+    date: Date;
     match_result: string;
     result_margin: string;
     toss: string;
