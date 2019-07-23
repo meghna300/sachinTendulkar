@@ -21,5 +21,10 @@ id="pieChartDiv" style="width: 200px;height: 200px;"></canvas>
   [legend]="true"
   [colors]="barChartColor"
   id="barChartDiv" style="width: 200px;height: 200px;"></canvas>
+</div> 
+<div class="chart col-md-3">
+  <h3 class="graph_heading">BATTING SCORE</h3>
+  <canvas baseChart [data]="inningData" [labels]="inningLabels" [chartType]="inningType" [legend]="true" [colors]="barChartColor"
+    id="inningChartDiv" style="width: 200px;height: 200px;"></canvas>
 </div>
 </div>

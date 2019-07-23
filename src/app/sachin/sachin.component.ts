@@ -20,24 +20,38 @@ export class SachinComponent implements OnInit {
   barChartType = 'bar';
   barChartColor: any;
   barChartOptions: any;
+  inningData = [0, 0];
+  inningLabels = ['1st inning', '2nd Inning'];
+  inningType = 'bar';
+  inningColor: any;
+  inningOptions: any;
   detail: Detail[];
   lost = 0;
   won = 0;
   century = 0;
   halfCentury = 0;
   below50 = 0;
+  firstInning = 0;
+  firstInningAvg = 0;
+  firstInningCount = 0;
+  secInning = 0;
+  secInningAvg = 0;
+  secInningCount = 0;
   constructor(private getDetailsService: GetDetailsService) { }
 
   ngOnInit() {
     const pie_canvas = <HTMLCanvasElement>document.getElementById('pieChartDiv');
     const pie_ctx = pie_canvas.getContext('2d');
     const bar_canvas = <HTMLCanvasElement>document.getElementById('barChartDiv');
-    const bar_ctx = pie_canvas.getContext('2d');
+    const bar_ctx = bar_canvas.getContext('2d');
+    const inning_canvas = <HTMLCanvasElement>document.getElementById('inningChartDiv');
+    const inning_ctx = inning_canvas.getContext('2d');
     this.getDetailsService.getDetails().subscribe(res => {
       this.detail = res;
       console.log(this.detail);
       this.getMatchResult();
       this.getBattingScore();
+      this.inningScore();
     },
     error => {
       console.log(error.message);
@@ -91,5 +105,30 @@ export class SachinComponent implements OnInit {
    console.log(this.century);
    console.log(this.halfCentury);
    console.log(this.below50);
+  }
+  inningScore() {
+    for (let i = 0; i < this.detail.length; i++) {
+      if (this.detail[i].batting_innings === '1st') {
+        if (!isNaN(this.detail[i].batting_score)) {
+          this.firstInning = this.firstInning + this.detail[i].batting_score;
+          this.firstInningCount = this.firstInningCount + 1;
+          console.log(this.firstInning);
+        }
+      }
+      if (this.detail[i].batting_innings === '2nd') {
+        if (!isNaN(this.detail[i].batting_score)) {
+          this.secInning = this.secInning + this.detail[i].batting_score;
+          this.secInningCount = this.secInningCount + 1;
+        }
+      }
+    }
+    this.firstInningAvg = this.firstInning / this.firstInningCount;
+    this.secInningAvg = this.secInning / this.secInningCount;
+    console.log(this.firstInningAvg);
+    console.log(this.secInningAvg);
+    this.inningData = [this.firstInningAvg, this.secInningAvg];
+    this.inningOptions = {
+      responsive: true
+    };
   }
 }
