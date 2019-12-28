@@ -24,7 +24,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.7.3",
     "core-js": "^2.4.1",
-    "handlebars": "^4.1.2",
+    "handlebars": "^4.3.0",
     "mem": "^5.1.1",
     "ng4-charts": "^1.0.2",
     "rxjs": "^5.5.6",
